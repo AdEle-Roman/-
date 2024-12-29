@@ -9,19 +9,20 @@
 #define LEFT 3
 #define RIGHT 4
 
-//Á´±í½ÚµãÉùÃ÷ 
+//é“¾è¡¨èŠ‚ç‚¹å£°æ˜ 
 typedef struct _snake_t
 {
 	int x;
 	int y;
 	struct _snake_t *next;
 }snake_t;
-typedef struct inf{
+typedef struct inf
+{
     char name[30];
     int score;
 }inf;
-
-typedef struct list{
+typedef struct list
+{
     inf data;
     struct list* next;
 }list;
@@ -42,7 +43,7 @@ snake_t *head = NULL;
 snake_t *foodNode = NULL;
 snake_t *save = NULL;
 
-//º¯ÊıÉùÃ÷ 
+//å‡½æ•°å£°æ˜ 
 int Setcolor(int c); 
 int printsnake(void);
 int WelcomeGame(void);
@@ -65,13 +66,13 @@ int writeFile(int score);
 int desSnake(void);
 
 
-//ÉèÖÃÑÕÉ« 
+//è®¾ç½®é¢œè‰² 
 int Setcolor(int c)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),c);
 	return 0;
 }
-//¶¨Î»×ø±ê 
+//å®šä½åæ ‡ 
 int Setcursor(int x,int y){
 
 	COORD c;
@@ -80,10 +81,10 @@ int Setcursor(int x,int y){
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
 	return 0;
 }
-//»¶Ó­½çÃæÉßµÄ»æ»­ 
+//æ¬¢è¿ç•Œé¢è›‡çš„ç»˜ç”» 
 int printsnake(void)
 {
-	//ÇåÆÁ 
+	//æ¸…å± 
 	system("cls");
 	
 
@@ -174,13 +175,13 @@ int printsnake(void)
 	return 0;
 
 }
-//»¶Ó­½çÃæ 
+//æ¬¢è¿ç•Œé¢ 
 int WelcomeGame(void)
 {
 	printsnake();
 	Setcolor(11);
 	Setcursor(45,18);
-	printf("Ì°³ÔÉß");/*printf´úÌæ*/
+	printf("è´ªåƒè›‡");/*printfä»£æ›¿*/
 	Setcolor(14);
 	int i,j;
 	int n=0;
@@ -204,27 +205,27 @@ int WelcomeGame(void)
 	
 
 	Setcursor(35,22);
-	printf("1, ÓÎÏ·¿ªÊ¼");
+	printf("1, æ¸¸æˆå¼€å§‹");
 	
 	Setcursor(55,22);
-	printf("2, ÓÎÏ·ËµÃ÷");
+	printf("2, æ¸¸æˆè¯´æ˜");
 	
 	Setcursor(35,24);
-	printf("3, ÍË³öÓÎÏ·");
+	printf("3, é€€å‡ºæ¸¸æˆ");
 	
 	Setcursor(55,24);
-	printf("4, ³É¼¨²éÑ¯");
+	printf("4, æˆç»©æŸ¥è¯¢");
 	
 	Setcolor(15);
 	Setcursor(27,27);
-	printf("ÇëÑ¡Ôñ:1,2,3,4:  ");
+	printf("è¯·é€‰æ‹©:1,2,3,4:  ");
 	
 	scanf("%d",&n);
 	getchar();
 	return n;
 
 }
-//ÓÎÏ·ËµÃ÷ 
+//æ¸¸æˆè¯´æ˜ 
 int aboutGame(void)
 {
 	int i,j;
@@ -252,32 +253,32 @@ int aboutGame(void)
 	
 	Setcolor(3);
 	Setcursor(30,8);
-	printf("1,²»ÄÜ×²µ½Ç½ºÍÄã×Ô¼º");
+	printf("1,ä¸èƒ½æ’åˆ°å¢™å’Œä½ è‡ªå·±");
 	
 	Setcolor(5);
 	Setcursor(30,11);
-	printf("2,°´Shift¼ÓËÙ,°´Ctrl¼õËÙ");
+	printf("2,æŒ‰ShiftåŠ é€Ÿ,æŒ‰Ctrlå‡é€Ÿ");
 	
 	Setcolor(11);
 	Setcursor(30,14);
-	printf("3,°´ÏÂ¿Õ¸ñ¼üÔİÍ£ÓÎÏ·»ò¼ÌĞøÓÎÏ·");
+	printf("3,æŒ‰ä¸‹ç©ºæ ¼é”®æš‚åœæ¸¸æˆæˆ–ç»§ç»­æ¸¸æˆ");
 	
 	Setcolor(13);
 	Setcursor(30,17);
-	printf("4,ÓÃ·½Ïò¼ü¿ØÖÆÒÆ¶¯·½Ïò");
+	printf("4,ç”¨æ–¹å‘é”®æ§åˆ¶ç§»åŠ¨æ–¹å‘");
 	
 	Setcolor(14);
 	Setcursor(30,20);
-	printf("5,°´ÏÂESCÍË³öÓÎÏ·");
+	printf("5,æŒ‰ä¸‹ESCé€€å‡ºæ¸¸æˆ");
 	
 	Setcolor(12);
 	Setcursor(20,24);
-	printf("°´ÏÂEnter·µ»Ø");
+	printf("æŒ‰ä¸‹Enterè¿”å›");
 	
 	return 0;
 
 }
-//³É¼¨²éÑ¯ 
+//æˆç»©æŸ¥è¯¢ 
 int aboutgrade()
 {
 	int i,j;
@@ -302,11 +303,11 @@ int aboutgrade()
 		}
 	}
 	Setcursor(38,5);
-	printf("²éÑ¯ÀúÊ·³É¼¨£¨·ÖÊı°´ÕÕ´Ó¸ßµ½µÍÅÅĞò£©\n");
+	printf("æŸ¥è¯¢å†å²æˆç»©ï¼ˆåˆ†æ•°æŒ‰ç…§ä»é«˜åˆ°ä½æ’åºï¼‰\n");
 	Setcursor(21,7);
 	return 0;	
 }
-/*¶ÁÎÄ×Öº¯Êı*/ 
+/*è¯»æ–‡å­—å‡½æ•°*/ 
 void read_line(char str[], int n)
 {
 	int ch, i = 0;
@@ -321,7 +322,7 @@ void read_line(char str[], int n)
 	str[i] = '\0';
 	return;
 }
-/*±£´æº¯Êı*/
+/*ä¿å­˜å‡½æ•°*/
 int save_to_file(list *L) {
     if(L == NULL)
         return 0;
@@ -329,7 +330,7 @@ int save_to_file(list *L) {
     FILE *fp;
     if ((fp = fopen("rank.txt", "w")) == NULL)
     {
-        printf("ÌáÊ¾£º²»ÄÜ´ò¿ªÎÄ¼ş\n");
+        printf("æç¤ºï¼šä¸èƒ½æ‰“å¼€æ–‡ä»¶\n");
         return 0;
     }
     int save_count = 0;
@@ -343,7 +344,7 @@ int save_to_file(list *L) {
     fclose(fp);
     return save_count;
 } 
-/*ÊÍ·ÅÄÚ´æ*/
+/*é‡Šæ”¾å†…å­˜*/
 void destory_list(list **L) {
 	if (L == NULL || *L == NULL)
 		return;
@@ -360,7 +361,7 @@ void destory_list(list **L) {
      number=0;
     (*L)=NULL;
 } 
-/*³õÊ¼»¯²¢¶ÁÈ¡ÒÑÓĞµÄ¼ÇÂ¼,·µ»ØÖµÊÇÓÃÀ´¼ì²âÊÇ·ñ³É¹¦*/
+/*åˆå§‹åŒ–å¹¶è¯»å–å·²æœ‰çš„è®°å½•,è¿”å›å€¼æ˜¯ç”¨æ¥æ£€æµ‹æ˜¯å¦æˆåŠŸ*/
 list* innert(list**L){  
 FILE*fp;
 inf p;
@@ -372,7 +373,7 @@ last=(*L);
 
 fp=fopen("rank.txt","r");
 if(fp==NULL){
-    printf("Î´ÄÜÕı³£´ò¿ªÎÄ¼ş£¡\n");
+    printf("æœªèƒ½æ­£å¸¸æ‰“å¼€æ–‡ä»¶ï¼\n");
     return NULL;
 }
 else{
@@ -397,22 +398,23 @@ else{
 fclose(fp);
 last->next=NULL;
 last=(*L);
-printf("³É¼¨¼ÇÂ¼Á´±íÒÑ½¨Á¢£¬¹²ÓĞ%dÌõ¼ÇÂ¼¡£\n",number);
+printf("æˆç»©è®°å½•é“¾è¡¨å·²å»ºç«‹ï¼Œå…±æœ‰%dæ¡è®°å½•ã€‚\n",number);
     return (*L);
 }
-/*ÊÖ¶¯¼ÓÈëĞÂ¼ÍÂ¼*/
+/*æ‰‹åŠ¨åŠ å…¥æ–°çºªå½•*/
 inf read_score_info(){
 	inf new_info;
-	printf("ÊäÈëÄãÒª²åÈëµÄ·ÖÊıĞÅÏ¢£º\n");
-	printf("ÌôÕ½Õß:");
-	 read_line(new_info.name,30);
-	printf("·ÖÊı£º");
+	Setcursor(38,17);
+	printf("è¾“å…¥ä½ è¦æ’å…¥çš„åˆ†æ•°ä¿¡æ¯ï¼š\n");
+	Setcursor(38,18);
+	printf("æŒ‘æˆ˜è€…(å¦‚æœ‰å¤šä½™å­—ç¬¦è¯·åˆ é™¤):");
+	read_line(new_info.name,30);
+	Setcursor(38,19);
+	printf("åˆ†æ•°ï¼š");
 	scanf("%d",&new_info.score);
 	return new_info;
 }
- 
- 
- 
+//å¦ä¸€ä¸ªç‰ˆæœ¬çš„åˆå§‹åŒ– 
  void insert_item(list *L, inf new_info){
   	list*temp;
    	list*pre=L;
@@ -435,8 +437,8 @@ inf read_score_info(){
 	
        
 }
-/*ÕâÊÇÑ°ÕÒ¼ÇÂ¼µ«ÎÒ·¢ÏÖ×î¿ªÊ¼ºÃÏñ°ÑËùÓĞ¼ÇÂ¼¶¼´ò³öÀ´ÁË£¬²»¹ıºÃÏñÒ²Ã»¹ØÏµ£¬¾Íµ±Ê¡ÂÔ×Ô¼º¿´À´ÕÒµÄÊ±¼ä*/
-list* search(list*L,char*name){/*Õâ¸öµØ·½Íµ¸öÀÁÃ»Ğ´ÊäÈëÃû×ÖµÄº¯Êı¾ÍÓÃĞÎ²Î*/
+/*è¿™æ˜¯å¯»æ‰¾è®°å½•ä½†æˆ‘å‘ç°æœ€å¼€å§‹å¥½åƒæŠŠæ‰€æœ‰è®°å½•éƒ½æ‰“å‡ºæ¥äº†ï¼Œä¸è¿‡å¥½åƒä¹Ÿæ²¡å…³ç³»ï¼Œå°±å½“çœç•¥è‡ªå·±çœ‹æ¥æ‰¾çš„æ—¶é—´*/
+list* search(list*L,char*name){/*è¿™ä¸ªåœ°æ–¹å·ä¸ªæ‡’æ²¡å†™è¾“å…¥åå­—çš„å‡½æ•°å°±ç”¨å½¢å‚*/
 	list*p=L->next;
     while(p!=NULL){
         if(!strcmp(p->data.name,name)){
@@ -446,18 +448,18 @@ list* search(list*L,char*name){/*Õâ¸öµØ·½Íµ¸öÀÁÃ»Ğ´ÊäÈëÃû×ÖµÄº¯Êı¾ÍÓÃĞÎ²Î*/
     }
     return NULL;
 }
-/*Ã°ÅİÅÅĞò*/
+/*å†’æ³¡æ’åº*/
 void bubble_sort(list*L) {
     FILE*fp;
 	list *p;
     inf temp;
 	fp=fopen("rank.txt","w+");
     int n = number;
-    int i, j;
-    
+    int i, j,a;
+    a=8;
     if (L == NULL || L->next == NULL){
     Setcursor(21,9);
-        printf("µ±Ç°Á´±íÖĞÃ»ÓĞ¼ÇÂ¼\n");}
+        printf("å½“å‰é“¾è¡¨ä¸­æ²¡æœ‰è®°å½•\n");}
     for (j = 1; j < n; ++j) {
         p = L->next;
         for (i = 0; i < n - j; ++i) {
@@ -477,17 +479,17 @@ void bubble_sort(list*L) {
         p=p->next;
     }
    	p=L->next;
-    while(p!=NULL){
-	
-    printf("ÌôÕ½Õß%sµÄµÃ·ÖÎª%d\n",p->data.name,p->data.score);
+    while((p!=NULL)&&(a<=21)){
+	Setcursor(21,a);
+    printf("æŒ‘æˆ˜è€…%sçš„å¾—åˆ†ä¸º%d\n",p->data.name,p->data.score);
 	p=p->next;
+	a++;
 }
 	fclose(fp);
 
     
 }
-
-//»®¶¨±ß¿ò£¨ÔİÊ±ÎŞÓÃ£©
+//åˆ’å®šè¾¹æ¡†ï¼ˆæš‚æ—¶æ— ç”¨ï¼‰
 int RunningGame(void) 
 {
 	system("cls");
@@ -515,7 +517,7 @@ int RunningGame(void)
 	return 0;
 
 }
-//´úÌæÉÏ¸öº¯Êı   »æÖÆµØÍ¼ 
+//ä»£æ›¿ä¸Šä¸ªå‡½æ•°   ç»˜åˆ¶åœ°å›¾ 
 int printMap(void)
 {
 	int i=0;
@@ -531,31 +533,31 @@ int printMap(void)
 			if(0==i || 26==i || 0==j || 56==j)
 			{
 				Setcolor(12);
-				printf("¡õ");
+				printf("â–¡");
 			}
 			else
 			{
 				Setcolor(7);
-				printf("¡ö");
+				printf("â– ");
 			}
 		}
 	}
-	//ËÄ½ÇÉè¶¨ 
+	//å››è§’è®¾å®š 
 	Setcolor(11);
 		Setcursor(0,0);
-		printf("¡ö");
+		printf("â– ");
 		
 		Setcursor(56,0);
-		printf("¡ö");
+		printf("â– ");
 		
 		Setcursor(0,26);
-		printf("¡ö");
+		printf("â– ");
 		
 		Setcursor(56,26);
-		printf("¡ö");
+		printf("â– ");
 
 }
-//ÓÎÏ·ÄÚ×¢ÊÍ 
+//æ¸¸æˆå†…æ³¨é‡Š 
 int showScoreTips(void)
 {	
 	int highScore=0;
@@ -565,39 +567,39 @@ int showScoreTips(void)
 	
 	Setcolor(3);
 	Setcursor(64,4);
-	printf("**×î¸ßµÃ·Ö¼ÇÂ¼: %d",highScore);
+	printf("**æœ€é«˜å¾—åˆ†è®°å½•: %d",highScore);
 	
 	Setcolor(7); 
 	Setcursor(64,8);
-	printf("µÃ·Ö: %d",score);
+	printf("å¾—åˆ†: %d",score);
 	
 	Setcolor(12);
 	Setcursor(72,11);
-	printf("ÎÂ Ü° Ìá Ê¾");
+	printf("æ¸© é¦¨ æ ç¤º");
 	
 	Setcolor(13);
 	Setcursor(64,14);
-	printf("*³ÔµôÃ¿¸öÊ³ÎïµÃ·Ö£º%d·Ö",add);
+	printf("*åƒæ‰æ¯ä¸ªé£Ÿç‰©å¾—åˆ†ï¼š%dåˆ†",add);
 	 
 	Setcursor(64,16);
-	printf("*²»ÄÜ×²µ½Ç½±Ú£¬²»ÄÜÒ§µ½×Ô¼º");
+	printf("*ä¸èƒ½æ’åˆ°å¢™å£ï¼Œä¸èƒ½å’¬åˆ°è‡ªå·±");
 	
 	Setcursor(64,18);
-	printf("*Shift¼ÓËÙÇ°½ø£¬Ctrl¼õËÙÇ°½ø");
+	printf("*ShiftåŠ é€Ÿå‰è¿›ï¼ŒCtrlå‡é€Ÿå‰è¿›");
 	
 	Setcursor(64,20);
-	printf("*Ê¹ÓÃ¿Õ¸ñ¼üÔİÍ£ÓÎÏ·ºÍ¼ÌĞøÓÎÏ·");
+	printf("*ä½¿ç”¨ç©ºæ ¼é”®æš‚åœæ¸¸æˆå’Œç»§ç»­æ¸¸æˆ");
 	
 	Setcursor(64,22);
-	printf("*Ê¹ÓÃ¡ü¡ı¡û¡ú¿ØÖÆÇ°½øµÄ·½Ïò");
+	printf("*ä½¿ç”¨â†‘â†“â†â†’æ§åˆ¶å‰è¿›çš„æ–¹å‘");
 	
 	Setcursor(64,24);
-	printf("*°´ÏÂESC¼üÍË³öÓÎÏ·"); 
+	printf("*æŒ‰ä¸‹ESCé”®é€€å‡ºæ¸¸æˆ"); 
 	
 	Setcursor(64,26);
-    printf("ÇëÔÚÓÎÏ·½áÊøºóÊäÈëÍæ¼ÒÃûºÍ³É¼¨ÒÔ½øĞĞÅÅÃû");
+    printf("è¯·åœ¨æ¸¸æˆç»“æŸåè¾“å…¥ç©å®¶åå’Œæˆç»©ä»¥è¿›è¡Œæ’å");
 }
-//¶ÁÈ¡ÎÄ¼ş£¨×î¸ß·Ö£© 
+//è¯»å–æ–‡ä»¶ï¼ˆæœ€é«˜åˆ†ï¼‰ 
 int readFile()
 {
 	int ret=-1;
@@ -611,7 +613,7 @@ int readFile()
 		printf("fopen failed.\n");
 		return 0;
 	}
-	//ÇåÁã·½Ê½ 
+	//æ¸…é›¶æ–¹å¼ 
 	memset(buf,0,sizeof(buf));
 	ret=fread(buf,sizeof(char),sizeof(buf),fp);
 	if(ret<=0)
@@ -625,7 +627,7 @@ int readFile()
 	return atoi(buf);
 
 }
-//²åÈëÎÄ¼ş£¨×î¸ß·Ö£© 
+//æ’å…¥æ–‡ä»¶ï¼ˆæœ€é«˜åˆ†ï¼‰ 
 int writeFile(int score)
 {
 	FILE *fp=NULL;
@@ -645,7 +647,7 @@ int writeFile(int score)
 	return 0;
 
 }
-//ÉßµÄ³õÊ¼»¯ 
+//è›‡çš„åˆå§‹åŒ– 
 int initSnake(void)
 {
 	int i=0;
@@ -663,7 +665,7 @@ int initSnake(void)
 			return -1;
 		}
 		memset(hed,0,sizeof(snake_t));
-		//ÉßµÄ³õÊ¼Î»ÖÃÈ·¶¨ 
+		//è›‡çš„åˆå§‹ä½ç½®ç¡®å®š 
 		hed->x=24+(i*2);
 		hed->y=5;
 		
@@ -677,7 +679,7 @@ int initSnake(void)
 	{
 		Setcolor(14);
 		Setcursor(tmp->x,tmp->y);
-		//»­Éß 
+		//ç”»è›‡ 
 		if(head==tmp)
 		{
 			printf("O");
@@ -690,7 +692,7 @@ int initSnake(void)
 	}
 
 }
-//Ëæ»úÉú³ÉÊ³Îï 
+//éšæœºç”Ÿæˆé£Ÿç‰© 
 int randFood(void)
 {
 	snake_t *tmp=NULL;
@@ -743,7 +745,7 @@ int randFood(void)
 	}
 
 }
-//ÉßµÄÒÆ¶¯ 
+//è›‡çš„ç§»åŠ¨ 
 int moveSnake(void)
 {
 	snake_t *hed=NULL;
@@ -757,7 +759,7 @@ int moveSnake(void)
 		return -1;
 	}
 	memset(hed,0,sizeof(snake_t));
-	//ÉßµÄ·½Ïò 
+	//è›‡çš„æ–¹å‘ 
 	if(UP==direction)
 	{
 		hed->x=head->x;
@@ -801,7 +803,7 @@ int moveSnake(void)
 			
 			tmp=tmp->next;
 		}
-		//³ÔÊ³Îï¼Ó·Ö 
+		//åƒé£Ÿç‰©åŠ åˆ† 
 		score=score+add;
 		
 		randFood();
@@ -823,10 +825,10 @@ int moveSnake(void)
 			save=tmp;
 			tmp=tmp->next;
 		}
-		//½«ÉßÎ²Ìæ»»Îª ¡ö
+		//å°†è›‡å°¾æ›¿æ¢ä¸º â– 
 		Setcursor(tmp->x,tmp->y);
 		Setcolor(7);
-		printf("¡ö");
+		printf("â– ");
 		
 		save->next=NULL;
 		
@@ -834,17 +836,17 @@ int moveSnake(void)
 	}
 
 }
-//°´¼ü²Ù×÷ 
+//æŒ‰é”®æ“ä½œ 
 int moveKeyControl(void)
 {		
-	//³õÊ¼·½ÏòÏòÓÒ 
+	//åˆå§‹æ–¹å‘å‘å³ 
 	direction=RIGHT;
 	while(1)
 	{
 		showScoreTips();
 		
 
-		//¶ÁÈë°´¼üº¯Êı £ºGetAsyncKeyState(VK_  £© 
+		//è¯»å…¥æŒ‰é”®å‡½æ•° ï¼šGetAsyncKeyState(VK_  ï¼‰ 
 		if(GetAsyncKeyState(VK_UP) && direction != DOWN)
 		{
 			direction=UP;
@@ -880,12 +882,12 @@ int moveKeyControl(void)
 			endGame();
 			break;
 		}
-		//¼ÓËÙ 
+		//åŠ é€Ÿ 
 		if(GetAsyncKeyState(VK_SHIFT))
 		{
 			speedUp();
 		}
-		//¼õËÙ 
+		//å‡é€Ÿ 
 		if(GetAsyncKeyState(VK_CONTROL))
 		{
 			speedDown();
@@ -895,14 +897,14 @@ int moveKeyControl(void)
 		
 		moveSnake();
 		
-		//×²Ç½ 
+		//æ’å¢™ 
 		if(isHitWall())
 		{
 			endStatus = 1;
 			endGame();
 			break;
 		}
-		//Ò§µ½×Ô¼º 
+		//å’¬åˆ°è‡ªå·± 
 		if(isHitSelf())
 		{
 			endStatus = 2;
@@ -912,7 +914,7 @@ int moveKeyControl(void)
 	}
 
 }
-//¼ÓËÙ £¨ÉÏÏŞÎª50ms£© 
+//åŠ é€Ÿ ï¼ˆä¸Šé™ä¸º50msï¼‰ 
 int speedUp(void)
 {
 	if(sleepTime>50)
@@ -921,7 +923,7 @@ int speedUp(void)
 		add=add+2;
 	}
 }
-//¼õËÙ £¨ÏÂÏŞÎª350ms£© 
+//å‡é€Ÿ ï¼ˆä¸‹é™ä¸º350msï¼‰ 
 int speedDown(void)
 {
 	if(sleepTime<350)
@@ -934,7 +936,7 @@ int speedDown(void)
 		add=1;
 	}
 }
-//ÅĞ¶ÏÊÇ·ñ×²Ç½ 
+//åˆ¤æ–­æ˜¯å¦æ’å¢™ 
 int isHitWall(void)
 {	
 	int q;
@@ -948,7 +950,7 @@ int isHitWall(void)
 	}
 	return q;
 }
-//ÅĞ¶ÏÊÇ·ñÒ§µ½×Ô¼º 
+//åˆ¤æ–­æ˜¯å¦å’¬åˆ°è‡ªå·± 
 int isHitSelf(void)
 {
 	snake_t *tmp = NULL;
@@ -967,14 +969,14 @@ int isHitSelf(void)
 	return 0;
 
 }
-//Ê§°Ü½çÃæ 
+//å¤±è´¥ç•Œé¢ 
 void printFailed(void)
 {	
 	int i=0;
 	system("cls");
 	Setcolor(15);
 	Setcursor(44,3);
-	printf("ÓÎ Ï· ½á Êø £¡");
+	printf("æ¸¸ æˆ ç»“ æŸ ï¼");
 	
 
 	Setcolor(11);
@@ -994,7 +996,7 @@ void printFailed(void)
 	}
 
 }
-//½áÊøÓÎÏ··½Ê½ 
+//ç»“æŸæ¸¸æˆæ–¹å¼ 
 int endGame(void)
 {
 	int highScore=0;
@@ -1007,63 +1009,66 @@ int endGame(void)
 		printFailed();
 		switch(endStatus)
 		{
-			case 1://×²Ç½ 
+			case 1://æ’å¢™ 
 				{
-					Setcursor(38,9);
+					Setcursor(38,7);
 					Setcolor(14);
-					printf("Ğ¡Éß×²µ½Ç½Á¨£¡");
+					printf("å°è›‡æ’åˆ°å¢™å“©ï¼");
 					break;
 				}
-			case 2://Ò§µ½×Ô¼º 
+			case 2://å’¬åˆ°è‡ªå·± 
 				{
-					Setcursor(38,9);
+					Setcursor(38,7);
 					Setcolor(14);
-					printf("²»ÄÜÌ°³Ôµ½³Ô×Ô¼º¿ÚÑÀ£¡");
+					printf("ä¸èƒ½è´ªåƒåˆ°åƒè‡ªå·±å£ç‰™ï¼");
 					break;
 				}
-			case 3://ESCÍË³ö 
+			case 3://ESCé€€å‡º 
 				{
-					Setcursor(38,9);
+					Setcursor(38,7);
 					Setcolor(14);
-					printf("ÄãÔõÃ´ÍËÁË£¿£¡");
+					printf("ä½ æ€ä¹ˆé€€äº†ï¼Ÿï¼");
 					break;
 				}
 			default:
 				;
 		}
 		Setcolor(13);
-		Setcursor(38,12);
-		printf("µÃ·Ö: %d",score);
+		Setcursor(38,10);
+		printf("å¾—åˆ†: %d",score);
 		
 		Setcolor(10);
 		highScore=readFile();
 		if(score>highScore)
 		{
-			Setcursor(38,16);
-			printf("ÄãÆÆÁË¼ÇÂ¼Ò®£¡");
+			Setcursor(38,13);
+			printf("ä½ ç ´äº†è®°å½•è€¶ï¼");
 			writeFile(score);
 		}
 		else
 		{
-			Setcursor(38,16);
-			printf("Äã²»¹»Å¬Á¦£¬»¹²î %d µ½×î¸ß·Ö!ºÃ²ËQAQ",highScore-score);
+			Setcursor(38,13);
+			printf("ä½ ä¸å¤ŸåŠªåŠ›ï¼Œè¿˜å·® %d åˆ°æœ€é«˜åˆ†!å¥½èœQAQ",highScore-score);
 		}
+		Setcursor(38,16);		
 	    L=innert(&L);
 	    new_info=read_score_info();
 	    insert_item(L, new_info);
 	    current=save_to_file(L);
 	    destory_list(&L);
-	    printf("ÒÑ±£´æ£¬¹²%dÌõÊı¾İ",current);
+		Setcursor(38,21);
+		Setcolor(15);
+	    printf("å·²ä¿å­˜ï¼Œå…±%dæ¡æ•°æ®",current);
 		Setcursor(25,23);
 		Setcolor(13);
-		printf("ÔÙÍæÒ»¾Ö°É! : 1");
+		printf("å†ç©ä¸€å±€å§! : 1");
 		
 		Setcursor(53,23);
-		printf("²ĞÈÌ¾Ü¾ø : 2");
+		printf("æ®‹å¿æ‹’ç» : 2");
 		
 		Setcursor(40,25);
 		Setcolor(15);
-		printf("×ö³öÄãµÄÑ¡Ôñ : ");
+		printf("åšå‡ºä½ çš„é€‰æ‹© : ");
 		
 		scanf("%d",&choice);
 		getchar();
@@ -1084,7 +1089,7 @@ int endGame(void)
 		{
 			Setcursor(30,27);
 			Setcolor(12);
-			printf("ÄãÊäµÄÉ¶£¡£¿ÔÙÊäÒ»´Î£¡");
+			printf("ä½ è¾“çš„å•¥ï¼ï¼Ÿå†è¾“ä¸€æ¬¡ï¼");
 			getchar();
 		}
 	}
@@ -1092,7 +1097,7 @@ int endGame(void)
 	return 0;
 
 }
-//Ïú»ÙÉß 
+//é”€æ¯è›‡ 
 int desSnake(void)
 {
 	snake_t *tmp=NULL;
@@ -1111,7 +1116,7 @@ int desSnake(void)
 	return 0;
 
 }
-//Ö÷º¯Êı 
+//ä¸»å‡½æ•° 
 int main()
 {
 	int choice=0;
@@ -1119,7 +1124,7 @@ int main()
 	srand(time(NULL));
 	Setcolor(13);
 	Setcursor(44,3);
-	printf("ÓÎÏ·ËµÃ÷");
+	printf("æ¸¸æˆè¯´æ˜");
 	int i,j;
 	char name[1024];
 	list*p;
@@ -1131,49 +1136,54 @@ int main()
 		switch(choice)
 		{
 			case 1:
-			//´òÓ¡µØÍ¼ 
+			//æ‰“å°åœ°å›¾ 
 			printMap();	
-			//Õ¹Ê¾ÌáÊ¾ 
+			//å±•ç¤ºæç¤º 
 			showScoreTips();
-			//³õÊ¼»¯Éß 
+			//åˆå§‹åŒ–è›‡ 
 			initSnake();
-			//Ëæ»úÉú³ÉÊ³Îï 
+			//éšæœºç”Ÿæˆé£Ÿç‰© 
 			randFood();
-			//°´¼ü²Ù×÷ 
+			//æŒ‰é”®æ“ä½œ 
 			moveKeyControl();
 			break;
 			
 			case 2:
-			//¹ØÓÚÓÎÏ· 
+			//å…³äºæ¸¸æˆ 
 			aboutGame();
 			break;
 			
 			case 3:
-			//ÍË³ö 
+			//é€€å‡º 
 			exit(0);
 			break;
 			
 			case 4:
-			//³É¼¨²éÑ¯
+			//æˆç»©æŸ¥è¯¢
     		
 			while((exitFlag = getchar()) != '\n');
 			while(1){
         	
 			
         	aboutgrade();
-        	L = innert(&L); // ¸üĞÂLÖ¸ÏòµÄµØÖ·
-       		 bubble_sort(L); // ¶ÔÁ´±í½øĞĞÅÅĞò
-        	printf("ÇëÊäÈëÌôÕ½ÕßÃû³Æ£º");
+        	L = innert(&L); // æ›´æ–°LæŒ‡å‘çš„åœ°å€
+       		bubble_sort(L); // å¯¹é“¾è¡¨è¿›è¡Œæ’åº
+       		Setcolor(15);
+			Setcursor(21,23);
+        	printf("è¯·è¾“å…¥æŒ‘æˆ˜è€…åç§°ï¼š");
         	scanf("%s", name);
         	p = search(L, name);
         	if(p != NULL){
-            	printf("²éÕÒ³É¹¦! ÌôÕ½Õß%sµÄµÃ·ÖÎª%d\n", name, p->data.score);
+            	Setcursor(21,24);
+				printf("æŸ¥æ‰¾æˆåŠŸ! æŒ‘æˆ˜è€…%sçš„å¾—åˆ†ä¸º%d\n", name, p->data.score);
         				}
 			else {
-            	printf("ÊäÈëµÄÃû×Ö´íÎó£¬ÇëÖØĞÂÊäÈë²¢±ÜÃâÖØ¸´²éÑ¯£¬ÇëÔÚÓÎÍæÒ»´ÎºóÔÙ´Î²éÑ¯£¡\n"); 
+				Setcursor(21,24);
+            	printf("è¾“å…¥çš„åå­—é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥å¹¶é¿å…é‡å¤æŸ¥è¯¢ï¼Œè¯·åœ¨æ¸¸ç©ä¸€æ¬¡åå†æ¬¡æŸ¥è¯¢ï¼\n"); 
         		}
-        	printf("ÊäÈë1¿É¼ÌĞøÓÎÍæ²¢²éÑ¯£º");
-        	while((exitFlag = getchar()) != '\n'); // Çå³ı»º³åÇø
+        	Setcursor(21,25);
+        	printf("è¾“å…¥1å¯ç»§ç»­æ¸¸ç©å¹¶æŸ¥è¯¢ï¼š");
+        	while((exitFlag = getchar()) != '\n'); // æ¸…é™¤ç¼“å†²åŒº
        			 if(exitFlag == '0' || exitFlag == '\n'){
             		break;
         	}
@@ -1185,7 +1195,7 @@ int main()
 		    Setcolor(12);
 		    Setcursor(45,28);
 		    
-			printf("²»ºÏ·¨£¬ÇëÖØĞÂÑ¡Ôñ!");
+			printf("ä¸åˆæ³•ï¼Œè¯·é‡æ–°é€‰æ‹©!");
 		}
 		
 		getchar();
